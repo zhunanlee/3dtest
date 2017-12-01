@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .slider{
+            width: 600px;
+            height: 300px;
+            border: 1px solid red;
+            margin: 100px auto;
+            position: relative;
+        }
+        .slider-outer{
+            -webkit-transform-style: preserve-3d;
+            -moz-transform-style: preserve-3d;
+            -ms-transform-style:preserve-3d ;
+            transform-style: preserve-3d;
+        }
+        .slider-outer,.slider-items,.img{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+        }
+        .slider-items{
+            width: 100px;
+            -webkit-transform-style: preserve-3d;
+            -moz-transform-style: preserve-3d;
+            -ms-transform-style:preserve-3d ;
+            transform-style: preserve-3d;
+            transition: 2s;
+
+        }
+        .img:nth-child(1){
+            background-image: url("img/banner1.jpg");
+            transform: rotateY(0deg) translateZ(50px);
+        }
+        .img:nth-child(2){
+            background-image: url("img/banner2.jpg");
+            transform: rotateY(90deg) translateZ(50px);
+
+        }
+        .img:nth-child(3){
+            background-image: url("img/banner3.jpg");
+            transform: rotateY(180deg) translateZ(50px);
+
+        }
+        .img:nth-child(4){
+            background-image: url("img/banner4.jpg");
+            transform: rotateY(270deg) translateZ(50px);
+
+        }
+
+        a{
+            text-decoration: none;
+        }
+        .btns{
+            height: 50px;
+            width: 100%;
+            position: absolute;
+            top: 50%;
+            margin-top: -25px;
+        }
+
+        .btns span{
+            color: #fff;
+            font-size: 40px;
+            line-height: 50px;
+            text-align: center;
+            position: absolute;
+        }
+        .btns #prev{
+            left: 5px;
+        }
+        .btns #next{
+            right: 5px;
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="slider">
+
+    <div class="slider-outer">
+        <div class="slider-items">
+            <div class="img"></div>
+            <div class="img"></div>
+            <div class="img"></div>
+            <div class="img"></div>
+        </div>
+        <div class="slider-items">
+            <div class="img"></div>
+            <div class="img"></div>
+            <div class="img"></div>
+            <div class="img"></div>
+        </div>
+            <div class="slider-items">
+            <div class="img"></div>
+            <div class="img"></div>
+            <div class="img"></div>
+            <div class="img"></div>
+        </div>
+        <div class="slider-items">
+            <div class="img"></div>
+            <div class="img"></div>
+            <div class="img"></div>
+            <div class="img"></div>
+        </div>
+        <div class="slider-items">
+            <div class="img"></div>
+            <div class="img"></div>
+            <div class="img"></div>
+            <div class="img"></div>
+        </div>
+        <div class="slider-items">
+            <div class="img"></div>
+            <div class="img"></div>
+            <div class="img"></div>
+            <div class="img"></div>
+        </div>
+    </div>
+
+    <div class="btns">
+        <a href="###"><span id="prev"><</span></a>
+        <a href="###"><span id="next">></span></a>
+    </div>
+
+
+
+</div>
+
+<script type="text/javascript">
+    var items=document.getElementsByClassName('slider-items'),num=0
+    for (var i = 0,len=items.length; i < len; i++) {
+        var item = items[i];
+        item.style.left=item.offsetWidth*i+'px';
+        item.style.transitionDelay=0.3*i+'s';
+        var imgs=item.children
+
+        for (var j = 0,lan=imgs.length; j < lan; j++) {
+            var img = imgs[j];
+            img.style.backgroundPosition=-item.offsetWidth*i+'px'
+        }
+    }
+    document.getElementById('prev').addEventListener('click',prevMoving)
+
+
+        function prevMoving() {
+        var rotate=--num*90;
+        for (var i = 0,len=items.length; i < len; i++) {
+        items[i].style.transform='rotateY('+rotate+'deg)'
+    }
+        }
+    document.getElementById('next').addEventListener('click',nextMoving)
+
+
+        function nextMoving() {
+        var rotate = ++num * 90;
+        for (var i = 0, len = items.length; i < len; i++) {
+            items[i].style.transform = 'rotateY(' + rotate + 'deg)'
+        }
+    }
+
+    setInterval(function () {
+        nextMoving()
+    },6000)
+</script>
+</body>
+</html>
